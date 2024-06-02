@@ -1,3 +1,4 @@
+"""Test file for base_model"""
 import unittest
 from datetime import datetime
 from time import sleep
@@ -58,6 +59,16 @@ class TestBaseModel(unittest.TestCase):
         self.assertEqual(bm_dict['id'], bm.id)
         self.assertEqual(bm_dict['created_at'], bm.created_at.isoformat())
         self.assertEqual(bm_dict['updated_at'], bm.updated_at.isoformat())
+
+    def test_recreate_instance_from_dict(self):
+        """Test if an instance can be recreated from a dictionary"""
+        bm1 = BaseModel()
+        bm1_dict = bm1.to_dict()
+        bm2 = BaseModel(**bm1_dict)
+        self.assertEqual(bm1.id, bm2.id)
+        self.assertEqual(bm1.created_at, bm2.created_at)
+        self.assertEqual(bm1.updated_at, bm2.updated_at)
+        self.assertNotIn('__class__', bm2.__dict__)
 
 if __name__ == '__main__':
     unittest.main()
