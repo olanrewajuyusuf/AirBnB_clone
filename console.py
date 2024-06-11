@@ -51,6 +51,8 @@ def split_curly_braces(e_arg):
 class HBNBCommand(cmd.Cmd):
     """class definition for command interpreter"""
     prompt = "(hbnb) "
+    valid_classes = ["BaseModel", "User", "Amenity",
+                     "Place", "Review", "State", "City"]
 
     def do_quit(self, arg):
         """Quit command to exit the program"""
